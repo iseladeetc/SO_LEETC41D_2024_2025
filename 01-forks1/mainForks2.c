@@ -14,22 +14,22 @@ void process_work (long niter)
 
 int main ()
 {
-    printf("Parent process starts...\n");
+    printf("Parent process starts (pid = %d; ppid=%d)...\n",
+                getpid(), getppid());
 
     int retfork = fork();
 
     if (retfork == 0) {
         // novo processo
-        printf("Child Process width pid = %d\n", getpid());
-        process_work(DEFAULT_ITER);
-        printf("processo terminating %d\n", getpid());
+        printf("Child Process width pid = %d; ppid = %d\n", getpid(), getppid());
+
+        printf("Child Process terminating width pid = %d; ppid = %d\n", getpid(), getppid());
         return 0;
     }
 
     // Processo ? -> processo pai
-    printf("My pid = %d\n", getpid());
-
-    printf("process %d terminating\n",   
-            getpid());
+    printf("My pid = %d e create a process %d\n", getpid(), retfork);
+    process_work(DEFAULT_ITER);
+    printf("process %d terminating\n", getpid());
     return 0;
 }
