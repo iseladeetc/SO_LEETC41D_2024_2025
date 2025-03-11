@@ -3,6 +3,7 @@
 #include <stdlib.h>
 
 #include <sys/types.h>
+#include <sys/wait.h>
 #include <unistd.h>
 
 #define DEFAULT_ITER    1e9
@@ -20,17 +21,20 @@ int main ()
                 getpid(), getppid());
 
     pid_t retfork = fork();
-
+    if( retfork == -1) {
+        perror("Calling fork");
+        exit(EXIT_FAILURE);
+    }
     if (retfork == 0) {
         // novo processo
-        printf("Child Process width pid = %d; ppid = %d\n", getpid(), getppid());
+        printf("Child Process with pid = %d; ppid = %d\n", getpid(), getppid());
 
         // Se apenas o filho executar o process_work o pai termina primeiro
         // o que acontece ao processo filho?
         process_work(DEFAULT_ITER);
         
-        printf("Child Process terminating width pid = %d; ppid = %d\n", getpid(), getppid());
-        return 0;
+        printf("Child Process terminating with pid = %d; ppid = %d\n", getpid(), getppid());
+        return 13;
     }
 
     // Processo ? -> processo pai
@@ -39,6 +43,16 @@ int main ()
     // Se apenas o pai executar o process_work o filho termina primeiro
     // o que acontece ao processo filho?
     // process_work(DEFAULT_ITER);
+
+    int status;
+    pid_t pid = wait(&status);
+    printf("Process pid = %d finished\n", pid);
+    if (WIFEXITED(status)) {
+        printf(" has terminated normally with exit value %d\n", WEXITSTATUS(status));
+    }
+    else if (WIFSIGNALED(status)) {
+        printf(" has terminated by signal %d", WTERMSIG(status));
+    }
 
     printf("process %d terminating\n", getpid());
     return 0;
