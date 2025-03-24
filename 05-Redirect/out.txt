@@ -1,0 +1,12 @@
+total 104
+-rwxrwxrwx 1 no no   345 Mar 16 11:46 Makefile
+-rwxrwxrwx 1 no no 18880 Mar 16 12:01 getStdoutCmd
+-rwxrwxrwx 1 no no  2519 Mar 16 11:45 getStdoutCmd.c
+-rwxrwxrwx 1 no no  8744 Mar 16 12:01 getStdoutCmd.o
+-rwxrwxrwx 1 no no     0 Mar 16 12:01 out.txt
+-rwxrwxrwx 1 no no 18712 Mar 16 12:01 pipeLineExec
+-rwxrwxrwx 1 no no  3576 Mar 16 11:47 pipeLineExec.c
+-rwxrwxrwx 1 no no  9280 Mar 16 12:01 pipeLineExec.o
+-rwxrwxrwx 1 no no 18544 Mar 16 12:01 redirectStdout
+-rwxrwxrwx 1 no no  1825 Mar 16 11:30 redirectStdout.c
+-rwxrwxrwx 1 no no  7600 Mar 16 12:01 redirectStdout.o

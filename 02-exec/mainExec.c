@@ -24,7 +24,7 @@ int main ()
         printf("Child Process with pid = %d; ppid = %d\n", getpid(), getppid());
 
         // executar um programa
-        execlp("ls", "ls", "-l", NULL);
+        //execlp("ls", "ls", "-l", NULL);
         execlp("geany", "geany", NULL);
         perror("calling exec");
         exit(EXIT_FAILURE);
